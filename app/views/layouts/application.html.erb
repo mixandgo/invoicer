@@ -22,7 +22,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">Invoicer</a>
+        <%= link_to "Invoicer", root_path, class: "navbar-brand" %>
         <span class="navbar-nav mr-auto mt-2 mt-lg-0"></span>
         <div class="form-inline my-2 my-lg-0">
           <%= link_to t("logout_link"), destroy_user_session_path, id: "user-logout", class: "nav-link", tabindex: "-1", aria_disabled: true, method: :delete %>
@@ -30,8 +30,17 @@
       </div>
     </nav>
     <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
+      <% if notice %>
+      <div class="alert alert-warning" role="alert">
+        <%= notice %>
+      </div>
+      <% end %>
+      <% if alert %>
+      <div class="alert alert-danger" role="alert">
+        <%= alert %>
+      </div>
+      <% end %>
       <%= yield %>
     </div>
 

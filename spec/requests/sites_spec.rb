@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Sites", type: :request do
   describe "GET /" do
-    it "says hello" do
+    it "redirects to the login page" do
       get root_path
-      expect(response).to have_http_status(200)
-      expect(response.body).to include("Hello")
+      expect(response).to have_http_status(302)
     end
   end
 end

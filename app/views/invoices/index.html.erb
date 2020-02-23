@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t(".invoice_number") %></th>
+      <th><%= t(".customer_name") %></th>
+      <th><%= t(".invoice_total") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoices.each do |invoice| %>
+    <tr>
+      <td></td>
+      <td class="invoice-list__customer-name"><%= invoice.customer.name %></td>
+      <td class="invoice-list__invoice-total"><%= invoice.total %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

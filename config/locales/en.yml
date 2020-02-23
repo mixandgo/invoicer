@@ -1,2 +1,10 @@
 en:
   logout_link: "Logout"
+  invoices:
+    create:
+      success: "Invoice created"
+    new:
+      submit: "Submit"
+  sites:
+    index:
+      new_invoice_btn: "New Invoice"

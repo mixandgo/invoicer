@@ -26,26 +26,34 @@ end
 
 When("I create invoice for Google Inc.") do
   click_on "new-invoice-btn"
-  # Client details
-  fill_in "invoice-client-email", with: "client@email.com"
-  fill_in "invoice-client-name", with: "Google Inc."
-  fill_in "invoice-client-cif", with: "RO12345678"
-  fill_in "invoice-client-reg", with: "j35/2001/2001"
-  fill_in "invoice-client-address", with: "Bd. Republicii Nr. 2"
-  fill_in "invoice-client-city", with: "Timisoara"
-  fill_in "invoice-client-state", with: "Timis"
-  fill_in "invoice-client-zip", with: "300302"
 
   # Invoice details
-  fill_in "invoice-description", with: "Accommodation services"
-  fill_in "invoice-qty", with: "3"
-  fill_in "invoice-price", with: "100"
+  fill_in "invoice-number", with: "100"
+  fill_in "invoice-date", with: "12/22/2020"
+
+  # Customer details
+  fill_in "invoice-customer-email", with: "customer@email.com"
+  fill_in "invoice-customer-name", with: "Google Inc."
+  fill_in "invoice-customer-cif", with: "RO12345678"
+  fill_in "invoice-customer-reg", with: "j35/2001/2001"
+  fill_in "invoice-customer-address", with: "Bd. Republicii Nr. 2"
+  fill_in "invoice-customer-city", with: "Timisoara"
+  fill_in "invoice-customer-state", with: "Timis"
+  fill_in "invoice-customer-country", with: "Romania"
+  fill_in "invoice-customer-zip", with: "300302"
+
+  # Invoice item details
+  fill_in "invoice-item-description", with: "Accommodation services"
+  fill_in "invoice-item-quantity", with: "3"
+  fill_in "invoice-item-price", with: "100"
 
   click_on "invoice-submit"
 end
 
 Then("I should see a record of that invoice") do
-  expect(page).to have_xpath("//tr/td[text()='Google Inc.' and td[text()='120']]")
+  expect(page).to have_content(I18n.t("invoices.create.success"))
+  expect(page).to have_css(".invoice-list__customer-name", text: "Google Inc.")
+  expect(page).to have_css(".invoice-list__invoice-total", text: "357")
 end
 
 Then("Google Inc. should receive the invoice via email") do

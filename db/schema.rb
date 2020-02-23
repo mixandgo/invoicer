@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_22_150934) do
+ActiveRecord::Schema.define(version: 2020_02_23_063751) do
+
+  create_table "customers", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
+    t.string "cif"
+    t.string "reg"
+    t.string "address"
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.string "zip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
+
+  create_table "invoice_items", force: :cascade do |t|
+    t.string "description"
+    t.string "unit"
+    t.integer "quantity"
+    t.decimal "price", precision: 8, scale: 2
+    t.decimal "tax", precision: 8, scale: 2
+    t.integer "invoice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "number"
+    t.date "date"
+    t.integer "customer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "total", precision: 8, scale: 2
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
