@@ -57,5 +57,6 @@ Then("I should see a record of that invoice") do
 end
 
 Then("Google Inc. should receive the invoice via email") do
-  step %{"client@email.com" should receive an email with subject "Foo bar"}
+  subject = I18n.t("mailers.invoice_mailer.send_invoice.subject")
+  step %{"customer@email.com" should receive an email with subject "#{subject}"}
 end

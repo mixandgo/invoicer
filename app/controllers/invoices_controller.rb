@@ -14,6 +14,7 @@ class InvoicesController < ApplicationController
     @invoice.customer.user_id = current_user.id
 
     if @invoice.save
+      InvoiceMailer.send_invoice(@invoice).deliver_later
       redirect_to invoices_path, notice: t(".success")
     else
       binding.pry

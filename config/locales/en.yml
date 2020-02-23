@@ -1,5 +1,10 @@
 en:
   logout_link: "Logout"
+  mailers:
+    invoice_mailer:
+      send_invoice:
+        subject: "New invoice"
+        body: "Your invoice total is %{total}"
   invoices:
     create:
       success: "Invoice created"
