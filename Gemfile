@@ -64,4 +64,5 @@ group :test do
   gem "selenium-webdriver"
   gem "email_spec"
   gem "launchy"
+  gem "timecop"
 end

@@ -10,6 +10,9 @@ en:
       success: "Invoice created"
     new:
       submit: "Submit"
-  sites:
     index:
+      invoice_number: "Nr."
+      customer_name: "Customer name"
+      invoice_date: "Date"
+      invoice_total: "Total"
       new_invoice_btn: "New Invoice"

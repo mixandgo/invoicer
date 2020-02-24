@@ -1,16 +1,19 @@
-<table class="table">
+<%= link_to t(".new_invoice_btn"), new_invoice_path, class: "btn btn-primary", id: "new-invoice-btn" %>
+<table class="table table-striped mt-4">
   <thead>
     <tr>
       <th><%= t(".invoice_number") %></th>
       <th><%= t(".customer_name") %></th>
+      <th><%= t(".invoice_date") %></th>
       <th><%= t(".invoice_total") %></th>
     </tr>
   </thead>
   <tbody>
     <% @invoices.each do |invoice| %>
     <tr>
-      <td></td>
+      <td class="invoice-list__invoice_number"><%= invoice.number %></td>
       <td class="invoice-list__customer-name"><%= invoice.customer.name %></td>
+      <td class="invoice-list__invoice-date"><%= invoice.created_at.strftime("%b %e, %Y") %></td>
       <td class="invoice-list__invoice-total"><%= invoice.total %></td>
     </tr>
     <% end %>

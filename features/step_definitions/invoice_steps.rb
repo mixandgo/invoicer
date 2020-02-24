@@ -52,8 +52,10 @@ end
 
 Then("I should see a record of that invoice") do
   expect(page).to have_content(I18n.t("invoices.create.success"))
+  expect(page).to have_css(".invoice-list__invoice_number", text: "100")
   expect(page).to have_css(".invoice-list__customer-name", text: "Google Inc.")
   expect(page).to have_css(".invoice-list__invoice-total", text: "357")
+  expect(page).to have_css(".invoice-list__invoice-date", text: "Sep 1, 2020")
 end
 
 Then("Google Inc. should receive the invoice via email") do

@@ -60,6 +60,16 @@ end
 #   end
 #
 
+Before do
+  # Set Time.now to September 1, 2020 10:05:00 AM
+  t = Time.local(2020, 9, 1, 10, 5, 0)
+  Timecop.freeze(t)
+end
+
+After do
+  Timecop.return
+end
+
 # Possible values are :truncation and :transaction
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
