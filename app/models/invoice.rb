@@ -7,6 +7,9 @@ class Invoice < ApplicationRecord
 
   before_validation :calculate_total
 
+  validates :number, uniqueness: true, presence: true
+  validates :date, presence: true
+
   private
 
     def calculate_total
