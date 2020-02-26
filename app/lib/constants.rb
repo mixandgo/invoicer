@@ -1,3 +1,3 @@
 module Constants
-  TAX = 1.19
+  TAX = 19
 end

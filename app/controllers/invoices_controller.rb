@@ -11,6 +11,7 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
+    @invoice.date = Date.strptime(invoice_params[:date], "%m/%d/%Y")
     @invoice.customer.user_id = current_user.id
 
     if @invoice.save
@@ -31,6 +32,8 @@ class InvoicesController < ApplicationController
                   :name, :email, :city, :cif, :reg, :address, :state, :country,
                   :zip
                 ],
-                invoice_items_attributes: [:description, :quantity, :price])
+                invoice_items_attributes: [
+                  :description, :quantity, :price, :unit
+                ])
     end
 end
