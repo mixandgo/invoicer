@@ -1,84 +1,94 @@
 <%= form_for @invoice do |f| %>
-  <div class="form-group row">
-    <%= f.label :number, class: "text-right col-sm-2 col-form-label" %>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-row">
+        <div class="form-group col">
+          <%= f.label :number %>
+          <%= f.text_field :number, class: "form-control", id: "invoice-number" %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <%= f.label :date %> <%= t(".date_example") %>
+          <%= f.text_field :date, class: "form-control", id: "invoice-date" %>
+        </div>
+      </div>
+    </div>
+
     <div class="col-sm-10">
-      <%= f.text_field :number, class: "form-control", id: "invoice-number" %>
+      <%= f.fields_for :customer do |fc| %>
+        <div class="form-group row">
+          <%= fc.label :name, class: "text-right col-sm-2 col-form-label" %>
+          <div class="col-sm-5">
+            <%= fc.text_field :name, class: "form-control", id: "invoice-customer-name" %>
+          </div>
+          <%= fc.label :email, class: "text-right col-sm-1 col-form-label" %>
+          <div class="col-sm-4">
+            <%= fc.text_field :email, class: "form-control", id: "invoice-customer-email" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= fc.label :cif, class: "text-right col-sm-2 col-form-label" %>
+          <div class="col-sm-5">
+            <%= fc.text_field :cif, class: "form-control", id: "invoice-customer-cif" %>
+          </div>
+          <%= fc.label :reg, class: "text-right col-sm-1 col-form-label" %>
+          <div class="col-sm-4">
+            <%= fc.text_field :reg, class: "form-control", id: "invoice-customer-reg" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= fc.label :address, class: "text-right col-sm-2 col-form-label" %>
+          <div class="col-sm-6">
+            <%= fc.text_field :address, class: "form-control", id: "invoice-customer-address" %>
+          </div>
+          <%= fc.label :country, class: "text-right col-sm-1 col-form-label" %>
+          <div class="col-sm-3">
+            <%= fc.text_field :country, class: "form-control", id: "invoice-customer-country" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= fc.label :city, class: "text-right col-sm-2 col-form-label" %>
+          <div class="col-sm-4">
+            <%= fc.text_field :city, class: "form-control", id: "invoice-customer-city" %>
+          </div>
+          <%= fc.label :state, class: "text-right col-sm-1 col-form-label" %>
+          <div class="col-sm-2">
+            <%= fc.text_field :state, class: "form-control", id: "invoice-customer-state" %>
+          </div>
+          <%= fc.label :zip, class: "text-right col-sm-1 col-form-label" %>
+          <div class="col-sm-2">
+            <%= fc.text_field :zip, class: "form-control", id: "invoice-customer-zip" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="form-group row">
-    <%= f.label :date, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :date, class: "form-control", id: "invoice-date" %>
+
+  <div class="my-4">
+    <div class="row">
+      <div class="border col-sm-4 p-2"><%= t(".description_head") %></div>
+      <div class="border col-sm-1 p-2"><%= t(".unit_head") %></div>
+      <div class="border col-sm-1 p-2"><%= t(".quantity_head") %></div>
+      <div class="border col-sm-2 p-2"><%= t(".price_head") %></div>
+      <div class="border col-sm-2 p-2"><%= t(".item_total_head") %></div>
+      <div class="border col-sm-2 p-2"><%= t(".tax_head") %></div>
     </div>
+
+    <%= f.fields_for :invoice_items do |fii| %>
+      <div class="form-group row">
+        <%= fii.text_field :description, class: "form-control col-sm-4", id: "invoice-item-description" %>
+        <%= fii.select :unit, [[ "Day", "day" ]], {}, class: "form-control col-sm-1", id: "invoice-item-description" %>
+        <%= fii.number_field :quantity, class: "form-control col-sm-1", id: "invoice-item-quantity" %>
+        <%= fii.number_field :price, class: "form-control col-sm-2", id: "invoice-item-price" %>
+        <input class="form-control col-sm-2 text-right" disabled value="1234" />
+        <input class="form-control col-sm-2 text-right" disabled value="1234" />
+      </div>
+    <% end %>
   </div>
-  <%= f.fields_for :customer do |fc| %>
+
   <div class="form-group row">
-    <%= fc.label :name, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :name, class: "form-control", id: "invoice-customer-name" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :email, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :email, class: "form-control", id: "invoice-customer-email" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :cif, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :cif, class: "form-control", id: "invoice-customer-cif" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :reg, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :reg, class: "form-control", id: "invoice-customer-reg" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :address, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :address, class: "form-control", id: "invoice-customer-address" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :city, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :city, class: "form-control", id: "invoice-customer-city" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :state, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :state, class: "form-control", id: "invoice-customer-state" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :country, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :country, class: "form-control", id: "invoice-customer-country" %>
-    </div>
-  </div>
-  <div class="form-group row">
-    <%= fc.label :zip, class: "text-right col-sm-2 col-form-label" %>
-    <div class="col-sm-10">
-      <%= fc.text_field :zip, class: "form-control", id: "invoice-customer-zip" %>
-    </div>
-  </div>
-  <% end %>
-  <%= f.fields_for :invoice_items do |fii| %>
-    <div class="form-group row">
-      <%= fii.text_field :description, class: "form-control col-sm-4", id: "invoice-item-description" %>
-      <%= fii.select :unit, [[ "Day", "day" ]], {}, class: "form-control col-sm-2", id: "invoice-item-description" %>
-      <%= fii.number_field :quantity, class: "form-control col-sm-2", id: "invoice-item-quantity" %>
-      <%= fii.number_field :price, class: "form-control col-sm-2", id: "invoice-item-price" %>
-      <input class="form-control col-sm-2 text-right" disabled value="1234" />
-    </div>
-  <% end %>
-  <div class="form-group row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-10">
+    <div class="col">
       <%= f.submit t(".submit"), class: "btn btn-primary", id: "invoice-submit" %>
     </div>
   </div>

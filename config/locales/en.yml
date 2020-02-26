@@ -10,6 +10,13 @@ en:
       success: "Invoice created"
     new:
       submit: "Submit"
+      date_example: "(MM/DD/YYYY)"
+      description_head: "Description"
+      unit_head: "U.M."
+      quantity_head: "Qty"
+      price_head: "Price"
+      item_total_head: "Total"
+      tax_head: "Tax"
     index:
       invoice_number: "Nr."
       customer_name: "Customer name"
