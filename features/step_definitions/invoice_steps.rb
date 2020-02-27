@@ -82,3 +82,7 @@ end
 Then("I should see the number {int} in the tax column") do |int|
   expect(find(".invoice-new__item-tax").value).to eq(int.to_s)
 end
+
+Then("I should see the number {int} in the invoice total column") do |int|
+  expect(page).to have_css("#invoice-total", text: int)
+end

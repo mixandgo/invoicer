@@ -19,3 +19,4 @@ Feature: Create invoice
     And I fill in the price field with 20
     Then I should see the number 200 in the total column
     And I should see the number 38 in the tax column
+    And I should see the number 238 in the invoice total column

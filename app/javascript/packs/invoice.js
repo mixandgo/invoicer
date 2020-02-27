@@ -12,6 +12,7 @@ $(document).on('input', '.invoice-new__item-quantity', (evt) => {
   const total = el.value * priceField.value;
   totalField.value = total;
   taxField.value = tax(total);
+  $('#invoice-total').html(total + tax(total));
 });
 
 $(document).on('input', '.invoice-new__item-price', (evt) => {
@@ -22,4 +23,5 @@ $(document).on('input', '.invoice-new__item-price', (evt) => {
   const total = el.value * quantityField.value;
   totalField.value = total;
   taxField.value = tax(total);
+  $('#invoice-total').html(total + tax(total));
 });
