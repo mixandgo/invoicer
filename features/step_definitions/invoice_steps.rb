@@ -24,6 +24,10 @@ Given("I am logged in") do
   click_on "login-submit"
 end
 
+Given("I go to the new invoice page") do
+  visit new_invoice_path
+end
+
 When("I create invoice for Google Inc.") do
   click_on "new-invoice-btn"
 
@@ -61,4 +65,20 @@ end
 Then("Google Inc. should receive the invoice via email") do
   subject = I18n.t("mailers.invoice_mailer.send_invoice.subject")
   step %{"customer@email.com" should receive an email with subject "#{subject}"}
+end
+
+When("I fill in the quantiy field with {int}") do |int|
+  fill_in "invoice-item-quantity", with: int
+end
+
+When("I fill in the price field with {int}") do |int|
+  fill_in "invoice-item-price", with: int
+end
+
+Then("I should see the number {int} in the total column") do |int|
+  expect(find(".invoice-new__item-total").value).to eq(int.to_s)
+end
+
+Then("I should see the number {int} in the tax column") do |int|
+  expect(find(".invoice-new__item-tax").value).to eq(int.to_s)
 end

@@ -79,10 +79,10 @@
       <div class="form-group row">
         <%= fii.text_field :description, class: "form-control col-sm-4", id: "invoice-item-description" %>
         <%= fii.select :unit, [[ "Day", "day" ]], {}, class: "form-control col-sm-1", id: "invoice-item-description" %>
-        <%= fii.number_field :quantity, class: "form-control col-sm-1", id: "invoice-item-quantity" %>
-        <%= fii.number_field :price, class: "form-control col-sm-2", id: "invoice-item-price" %>
-        <input class="form-control col-sm-2 text-right" disabled value="1234" />
-        <input class="form-control col-sm-2 text-right" disabled value="1234" />
+        <%= fii.number_field :quantity, class: "form-control col-sm-1 invoice-new__item-quantity", id: "invoice-item-quantity" %>
+        <%= fii.number_field :price, class: "form-control col-sm-2 invoice-new__item-price", id: "invoice-item-price" %>
+        <input class="form-control col-sm-2 text-right invoice-new__item-total" disabled value="0" />
+        <input class="form-control col-sm-2 text-right invoice-new__item-tax" disabled value="0" />
       </div>
     <% end %>
   </div>
