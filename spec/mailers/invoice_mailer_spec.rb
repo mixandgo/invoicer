@@ -21,5 +21,11 @@ RSpec.describe InvoiceMailer, type: :mailer do
       body = I18n.t("mailers.invoice_mailer.send_invoice.body", total: "11.9")
       expect(mail.body.encoded).to match(body)
     end
+
+    it "attaches the invoice PDF" do
+      pdf_file = mail.attachments["invoice.pdf"]
+      expect(pdf_file).to be_a_kind_of(Mail::Part)
+      expect(pdf_file.content_type).to include("application/pdf")
+    end
   end
 end

@@ -26,6 +26,8 @@ gem "jbuilder", "~> 2.7"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 gem "devise"
+gem "prawn"
+gem "prawn-table"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
@@ -65,4 +67,6 @@ group :test do
   gem "email_spec"
   gem "launchy"
   gem "timecop"
+  gem "pdf-inspector", require: "pdf/inspector"
+  gem "faker"
 end

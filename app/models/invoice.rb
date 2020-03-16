@@ -10,6 +10,15 @@ class Invoice < ApplicationRecord
   validates :number, uniqueness: true, presence: true
   validates :date, presence: true
 
+  def pdf
+    return unless persisted?
+
+    pdf = Prawn::Document.new
+    pdf.text I18n.t("invoices.pdf.title")
+    pdf.render_file "tmp/invoice_#{id}.pdf"
+    File.read("tmp/invoice_#{id}.pdf")
+  end
+
   private
 
     def calculate_total

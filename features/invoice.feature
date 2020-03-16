@@ -10,6 +10,7 @@ Feature: Create invoice
     When I create invoice for Google Inc.
     Then I should see a record of that invoice
     And Google Inc. should receive the invoice via email
+    And Google Inc. should receive a PDF version of the invoice via email
 
   Scenario: Total and Tax field are calculated dynamically
     Given I have an account

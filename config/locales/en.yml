@@ -6,6 +6,41 @@ en:
         subject: "New invoice"
         body: "Your invoice total is %{total}"
   invoices:
+    pdf:
+      title: "Invoice"
+      number: "No.: "
+      date: "Date: "
+      user:
+        company: "Company: "
+        cif: "TAX ID: "
+        reg: "Reg. No.: "
+        address: "Address: "
+        city: "City: "
+        state: "State: "
+        country: "Country: "
+        zip: "Zip: "
+        bank: "Bank: "
+        iban: "IBAN: "
+      customer:
+        name: "Company: "
+        cif: "TAX ID: "
+        reg: "Reg. No.: "
+        address: "Address: "
+        city: "City: "
+        state: "State: "
+        country: "Country: "
+        zip: "Zip: "
+        bank: "Bank: "
+        iban: "IBAN: "
+      table:
+        nr: "Nr."
+        description: "Description"
+        unit: "U.M."
+        quantity: "Qty"
+        price: "Price"
+        item_total: "Total"
+        tax: "Tax"
+        total: "Total USD"
     create:
       success: "Invoice created"
     new:

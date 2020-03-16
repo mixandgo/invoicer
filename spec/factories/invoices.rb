@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :invoice do
-    number { "MyString" }
-    date { "2020-02-22" }
-    customer { "" }
+    number { generate(:invoice_number) }
+    date { Time.current }
+    customer
   end
 end

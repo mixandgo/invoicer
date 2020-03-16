@@ -67,6 +67,12 @@ Then("Google Inc. should receive the invoice via email") do
   step %{"customer@email.com" should receive an email with subject "#{subject}"}
 end
 
+Then("Google Inc. should receive a PDF version of the invoice via email") do
+  open_last_email
+  step %{there should be an attachment named "invoice.pdf"}
+  step %{attachment 1 should be of type "application/pdf"}
+end
+
 When("I fill in the quantiy field with {int}") do |int|
   fill_in "invoice-item-quantity", with: int
 end
