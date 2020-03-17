@@ -5,6 +5,7 @@
       <th><%= t(".invoice_number") %></th>
       <th><%= t(".customer_name") %></th>
       <th><%= t(".invoice_date") %></th>
+      <th><%= t(".invoice_email_sent") %></th>
       <th><%= t(".invoice_total") %></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
       <td class="invoice-list__invoice_number"><%= invoice.number %></td>
       <td class="invoice-list__customer-name"><%= invoice.customer.name %></td>
       <td class="invoice-list__invoice-date"><%= invoice.created_at.strftime("%b %e, %Y") %></td>
+      <td class="invoice-list__invoice-email_sent"><%= invoice.email_sent_at&.strftime("%b %e, %Y") %></td>
       <td class="invoice-list__invoice-total"><%= invoice.total %></td>
     </tr>
     <% end %>

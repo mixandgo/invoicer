@@ -56,5 +56,6 @@ en:
       invoice_number: "Nr."
       customer_name: "Customer name"
       invoice_date: "Date"
+      invoice_email_sent: "Sent Date"
       invoice_total: "Total"
       new_invoice_btn: "New Invoice"

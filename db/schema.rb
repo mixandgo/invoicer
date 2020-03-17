@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_113136) do
+ActiveRecord::Schema.define(version: 2020_03_16_054039) do
 
   create_table "customers", force: :cascade do |t|
     t.string "email"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_03_03_113136) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "total", precision: 8, scale: 2
+    t.datetime "email_sent_at"
     t.index ["customer_id"], name: "index_invoices_on_customer_id"
   end
 

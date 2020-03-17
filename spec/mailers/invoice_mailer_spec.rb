@@ -27,5 +27,11 @@ RSpec.describe InvoiceMailer, type: :mailer do
       expect(pdf_file).to be_a_kind_of(Mail::Part)
       expect(pdf_file.content_type).to include("application/pdf")
     end
+
+    it "sets the sent date after the job is performed" do
+      invoice = create(:invoice)
+      InvoiceMailer.send_invoice(invoice).deliver_now
+      expect(invoice.reload.email_sent_at).to_not be_nil
+    end
   end
 end

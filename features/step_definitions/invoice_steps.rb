@@ -29,37 +29,20 @@ Given("I go to the new invoice page") do
 end
 
 When("I create invoice for Google Inc.") do
-  click_on "new-invoice-btn"
+  create_invoice
+end
 
-  # Invoice details
-  fill_in "invoice-number", with: "100"
-  fill_in "invoice-date", with: "12/22/2020"
-
-  # Customer details
-  fill_in "invoice-customer-email", with: "customer@email.com"
-  fill_in "invoice-customer-name", with: "Google Inc."
-  fill_in "invoice-customer-cif", with: "RO12345678"
-  fill_in "invoice-customer-reg", with: "j35/2001/2001"
-  fill_in "invoice-customer-address", with: "Bd. Republicii Nr. 2"
-  fill_in "invoice-customer-city", with: "Timisoara"
-  fill_in "invoice-customer-state", with: "Timis"
-  fill_in "invoice-customer-country", with: "Romania"
-  fill_in "invoice-customer-zip", with: "300302"
-
-  # Invoice item details
-  fill_in "invoice-item-description", with: "Accommodation services"
-  fill_in "invoice-item-quantity", with: "3"
-  fill_in "invoice-item-price", with: "100"
-
-  click_on "invoice-submit"
+Given("I have created an invoice") do
+  create_invoice
 end
 
 Then("I should see a record of that invoice") do
   expect(page).to have_content(I18n.t("invoices.create.success"))
-  expect(page).to have_css(".invoice-list__invoice_number", text: "100")
-  expect(page).to have_css(".invoice-list__customer-name", text: "Google Inc.")
-  expect(page).to have_css(".invoice-list__invoice-total", text: "357")
-  expect(page).to have_css(".invoice-list__invoice-date", text: "Sep 1, 2020")
+  expect_invoice_row
+end
+
+Then("I should see the invoice I've created") do
+  expect_invoice_row
 end
 
 Then("Google Inc. should receive the invoice via email") do
@@ -91,4 +74,13 @@ end
 
 Then("I should see the number {int} in the invoice total column") do |int|
   expect(page).to have_css("#invoice-total", text: int)
+end
+
+When("I go to the invoices list page") do
+  click_on "invoices"
+end
+
+Then("It should be marked as sent") do
+  expect(page)
+    .to have_css(".invoice-list__invoice-email_sent", text: "Sep 1, 2020")
 end

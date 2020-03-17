@@ -16,11 +16,16 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <%= link_to "Invoicer", root_path, class: "navbar-brand" %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <%= link_to "Invoicer", root_path, class: "navbar-brand" %>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to t(".invoices"), invoices_path, class: "nav-link", id: "invoices" %>
+          </li>
+        </ul>
         <span class="navbar-nav mr-auto mt-2 mt-lg-0"></span>
         <div class="form-inline my-2 my-lg-0">
           <%= link_to t("logout_link"), destroy_user_session_path, id: "user-logout", class: "nav-link", tabindex: "-1", aria_disabled: true, method: :delete %>
