@@ -9,4 +9,5 @@
       - [X] Add a total to the invoice table
       - [X] Move the customer info to the top right corner
       - [X] Style the user info
-- [ ] History emails
+- [X] History emails
+- [X] Sign out links

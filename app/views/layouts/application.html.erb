@@ -21,15 +21,19 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <%= link_to t(".invoices"), invoices_path, class: "nav-link", id: "invoices" %>
-          </li>
-        </ul>
+        <% if user_signed_in? %>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to t(".invoices"), invoices_path, class: "nav-link", id: "invoices" %>
+            </li>
+          </ul>
+        <% end %>
         <span class="navbar-nav mr-auto mt-2 mt-lg-0"></span>
-        <div class="form-inline my-2 my-lg-0">
-          <%= link_to t("logout_link"), destroy_user_session_path, id: "user-logout", class: "nav-link", tabindex: "-1", aria_disabled: true, method: :delete %>
-        </div>
+        <% if user_signed_in? %>
+          <div class="form-inline my-2 my-lg-0">
+            <%= link_to t("logout_link"), destroy_user_session_path, id: "user-logout", class: "nav-link", tabindex: "-1", aria_disabled: true, method: :delete %>
+          </div>
+        <% end %>
       </div>
     </nav>
     <div class="container">
